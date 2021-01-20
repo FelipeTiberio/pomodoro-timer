@@ -1,0 +1,42 @@
+
+:root{
+    font-size: 60%;
+    --color-background: #393e46 ;
+    --color-primary: #fcda05;
+    --color-secondary : #fffbe0;
+    --color-dark : #222831;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box ;
+}
+
+html, body, #root{
+    width: 100vw;
+    overflow-x: hidden;
+    background: var(--color-background);
+    height: 100%;
+    color: var(--color-secondary);
+}
+
+#root{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body, input, button, textarea {
+    font: 500 1.6rem Poppins;
+}
+
+.container{
+    width: 100vw;
+    max-width: 500px;
+}
+@media ( min-width: 700px  ){
+    :root{
+        font-size: 62.5%;
+    }
+} 
