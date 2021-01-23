@@ -5,56 +5,67 @@ import SimpleButton from '../../components/SimpleButton';
 import './styles.css'
 
 function Landing(){
-    // 1500s = 25m e 300s = 5m
+    
     const [ durationSession, setDurantionSession ] = useState(1500);
     const [ durationBreak, setDurantionBreak ]= useState(300);
     const [ timeLeft , setTimeLeft ] = useState(1500);
     const [ start_turn, setStarTurn] = useState(false);
+    const [ countDown, setCountdown] = useState({minutes:60, seconds: 60})
 
-    const convert_seconds_to_minutes = (seconds) => seconds / 60;
+    const convertSecondsToMinutes = (seconds) => seconds / 60;
 
-    const add_break_time = () => { 
+    const addBreakTime = () => { 
             setDurantionBreak( (durationBreak) =>  durationBreak + 60 )
         };
 
-    const sub_break_time = () => { 
+    const subBreakTime = () => { 
             setDurantionBreak( (durationBreak) =>  durationBreak - 60 )
         };
     
-    const add_session_time = () => { 
+    const addSessionTime = () => { 
         setDurantionSession( (durationSession) =>  durationSession + 60 )
         };
     
-    const sub_session_time = () => { 
+    const subSessionTime = () => { 
         setDurantionSession( (durationSession) =>  durationSession - 60 )
         };
 
     const zerar =  () => {
-        
+       
     }
 
     const start = () =>{
-        setStarTurn( () => !start_turn)
+       
     }
 
     return(
         <main>
             <section id = 'top-buttons'> 
                 <PlusMinusButtons 
-                    onClickAddMinute  = {add_break_time}
-                    onClickSubMinute  = {sub_break_time}
+                    onClickAddMinute  = {addBreakTime}
+                    onClickSubMinute  = {subBreakTime}
                     className = "break-buttons" 
-                    number={ convert_seconds_to_minutes(durationBreak)} />
+                    number={ convertSecondsToMinutes(durationBreak)} />
 
                 <PlusMinusButtons 
-                    onClickAddMinute = {add_session_time}
-                    onClickSubMinute = {sub_session_time}
+                    onClickAddMinute = {addSessionTime}
+                    onClickSubMinute = {subSessionTime}
                     className = "timelenght-buttons" 
-                    number={ convert_seconds_to_minutes(durationSession)} />
+                    number={ convertSecondsToMinutes(durationSession)} />
 
             </section>
 
-                <Display  minutos={"25"} segundos={"00"}/>
+                <Display  
+                    minutos={ 
+                        start_turn === false ?
+                        durationSession/60  : 
+                        countDown.minutes/60
+                    } 
+                    segundos={
+                        start_turn === false ?
+                        "00":
+                        countDown.seconds/60
+                    }/>
 
             <section id = 'start-rest-container'>
                 <SimpleButton 
@@ -64,7 +75,7 @@ function Landing(){
                     }
                     onClick={start}
                     />
-                <SimpleButton label='Reset' />
+                <SimpleButton label='Reset' onClick={zerar} />
             </section>
         </main>
     );
