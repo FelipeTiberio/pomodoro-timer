@@ -1,0 +1,3 @@
+
+export const STANDARD_SESSION_DURATION = 1500;
+export const STANDARD_BREAK_DURATION = 300;
