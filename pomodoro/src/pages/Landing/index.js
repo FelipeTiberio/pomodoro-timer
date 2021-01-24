@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
+import { Helmet } from 'react-helmet';
 import Display from '../../components/Display';
 import PlusMinusButtons from '../../components/PlusMinusButtons';
 import SimpleButton from '../../components/SimpleButton';
@@ -6,10 +7,11 @@ import SimpleButton from '../../components/SimpleButton';
 import './styles.css'
 import * as constants from '../../constants';
 
+
 function Landing(){
     
     const [ durationSession, setDurantionSession ] = useState( constants.STANDARD_SESSION_DURATION);
-    const [ durationBreak, setDurantionBreak ]= useState(constants.STANDARD_BREAK_DURATION);
+    const [ durationBreak, setDurantionBreak ] = useState(constants.STANDARD_BREAK_DURATION);
     const [ isCounting, setIsCounting] = useState(false);
     const [ countdown, setCountdown] = useState( constants.STANDARD_SESSION_DURATION);
     const [ isInSession, setIsInSession] = useState(false);
@@ -25,6 +27,7 @@ function Landing(){
           if( isCounting && countdown > 0){
             setCountdown( () => ( countdown - 1))
           }
+          
           else if( countdown <= 0 && isInSession ){
             startBreak();
             setIsInSession(false);
@@ -33,8 +36,6 @@ function Landing(){
             startPomodoro();
             setIsInBreak(false);
           }
-          
-          
         }, 1000);
       });
 
@@ -43,15 +44,15 @@ function Landing(){
         };
 
     const subBreakTime = () => { 
-            setDurantionBreak( (durationBreak) =>  durationBreak - 60 )
+            setDurantionBreak( (durationBreak) =>  durationBreak - 60 );
         };
     
     const addSessionTime = () => { 
-        setDurantionSession( (durationSession) =>  durationSession + 60 )
+        setDurantionSession( (durationSession) =>  durationSession + 60 );
         };
     
     const subSessionTime = () => { 
-        setDurantionSession( (durationSession) =>  durationSession - 60 )
+        setDurantionSession( (durationSession) =>  durationSession - 60 );
         };
 
     const zerar = async () => {
@@ -64,7 +65,6 @@ function Landing(){
 
     const startPomodoro = () => {
         setIsCounting(() => true);
-        setCountdown(() => durationSession);
         setIsInSession( true );
     };
 
@@ -79,14 +79,20 @@ function Landing(){
         setIsCounting( ()=> !isCounting );
     };
 
+
     return(
+        <>
+        <Helmet>
+            <title> Pomodoro </title>
+        </Helmet>
+
         <main>
             <section id = 'top-buttons'> 
                 <PlusMinusButtons 
                     onClickAddMinute  = {addBreakTime}
                     onClickSubMinute  = {subBreakTime}
                     className = "break-buttons" 
-                    number={ Math.floor( ( durationBreak )/60 )%60 } />
+                    number={ Math.floor( ( durationBreak )/60 )% 60 } />
 
                 <PlusMinusButtons 
                     onClickAddMinute = {addSessionTime}
@@ -98,7 +104,7 @@ function Landing(){
                 <div>
                     <Display  
                         minutos  = { !isCounting ? 
-                            Math.floor( (durationSession)/60) % 60 : 
+                            Math.floor( (countdown)/60) % 60 : 
                             Math.floor( (countdown)/60 )%60 } 
                         segundos = { Math.floor( (countdown) % 60 ) }/>    
                 </div>
@@ -115,6 +121,7 @@ function Landing(){
                 <SimpleButton label='Reset' onClick={zerar} />
             </section>
         </main>
+        </>
     );
 };
 
