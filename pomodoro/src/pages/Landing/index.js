@@ -19,6 +19,10 @@ function Landing(){
 
     let intervalo = useRef();
 
+    const Styles = {
+        hide : { display : "none"}
+    }
+
     useEffect( () => {
         /** Run in the backgroud  e count the seconds 
          * using the value that is in countdown.
@@ -87,21 +91,24 @@ function Landing(){
         </Helmet>
 
         <main>
+            <h1>Pomodoro</h1>
             <section id = 'top-buttons'> 
                 <PlusMinusButtons 
                     onClickAddMinute  = {addBreakTime}
                     onClickSubMinute  = {subBreakTime}
+                    label = {"Break length"}
                     className = "break-buttons" 
                     number={ Math.floor( ( durationBreak )/60 )% 60 } />
 
                 <PlusMinusButtons 
                     onClickAddMinute = {addSessionTime}
                     onClickSubMinute = {subSessionTime}
+                    label = {"Sesseion length"}
                     className = "timelenght-buttons" 
                     number = { Math.floor( ( durationSession )/60 )%60 } />
 
             </section>
-                <div>
+                <div id='display'>
                     <Display  
                         minutos  = { !isCounting ? 
                             Math.floor( (countdown)/60) % 60 : 

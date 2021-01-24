@@ -1,0 +1,22 @@
+
+
+.break-buttons,
+.timelenght-buttons
+{
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.break-buttons button,
+.timelenght-buttons button{
+    padding: 0.2rem;
+    border: none;
+    border-radius: 3px;
+    margin: 0.5rem
+}
+
+
+.break-buttons h3,
+.timelenght-buttons h3{
+    
+}
