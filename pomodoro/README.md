@@ -1,6 +1,3 @@
-# TODO:
-[ ] estilizar;
-[ ] colocar limetes máximos e minimos para intervalos e seções;
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
