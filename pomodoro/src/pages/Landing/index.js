@@ -19,10 +19,6 @@ function Landing(){
 
     let intervalo = useRef();
 
-    const Styles = {
-        hide : { display : "none"}
-    }
-
     useEffect( () => {
         /** Run in the backgroud  e count the seconds 
          * using the value that is in countdown.
@@ -44,19 +40,27 @@ function Landing(){
       });
 
     const addBreakTime = () => { 
-            setDurantionBreak( (durationBreak) =>  durationBreak + 60 );
+            if( durationBreak < 1800){
+                setDurantionBreak( (durationBreak) =>  durationBreak + 60 );
+            }
         };
 
     const subBreakTime = () => { 
-            setDurantionBreak( (durationBreak) =>  durationBreak - 60 );
+            if( durationBreak > 60){
+                setDurantionBreak( (durationBreak) =>  durationBreak - 60 );
+            }
         };
     
     const addSessionTime = () => { 
-        setDurantionSession( (durationSession) =>  durationSession + 60 );
+            if( durationSession < 3540){
+                setDurantionSession( (durationSession) =>  durationSession + 60 );
+            }
         };
     
-    const subSessionTime = () => { 
-        setDurantionSession( (durationSession) =>  durationSession - 60 );
+    const subSessionTime = () => {
+            if( durationSession > 60*5){
+                setDurantionSession( (durationSession) =>  durationSession - 60 );
+            } 
         };
 
     const zerar = async () => {
@@ -87,16 +91,19 @@ function Landing(){
     return(
         <>
         <Helmet>
-            <title> Pomodoro Clock</title>
+            <title>
+                { !isCounting ? "Pomodoro Timer" : 
+                Math.floor( (countdown)/60 )%60 +":"+ 
+                Math.floor( (countdown) % 60 )
+                }
+            </title>
         </Helmet>
 
         <main className="container">
             <h1>Pomodoro</h1>
             <div id='display'>
                 <Display  
-                    minutos  = { !isCounting ? 
-                        Math.floor( (countdown)/60) % 60 : 
-                        Math.floor( (countdown)/60 )%60 } 
+                    minutos  = { Math.floor( (countdown)/60 )%60 } 
                     segundos = { Math.floor( (countdown) % 60 ) }/>    
             </div>
             

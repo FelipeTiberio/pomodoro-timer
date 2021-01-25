@@ -23,13 +23,15 @@
 .break-buttons button,
 .timelenght-buttons button{
     padding: 0.2rem;
-    border: none;
     border-radius: 3px;
     margin: 0.5rem;
+    color: rgba(255, 255, 255, 0.3) !important;
+
 }
 
 .btn-setting{ 
     background: none;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;;
 }
 
 
