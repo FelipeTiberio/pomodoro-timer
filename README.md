@@ -40,4 +40,4 @@ User Story #7: I can see an element with a corresponding id="timer-label", that 
 - [x] **User Story #27**: The audio element with id="beep" must be 1 second or longer.
 - [x] **User Story #28**: The audio element with id of beep must stop playing and be rewound to the beginning when the element with the id of reset is clicked.
 
-Everything is checked :)
+Everything ischecked :)
