@@ -4,7 +4,20 @@
 .timelenght-buttons
 {
     text-align: center;
-    font-size: 1.6rem;
+    font-size:  1.6rem;
+    font-weight: normal;
+    color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.break-buttons h3,
+.timelenght-buttons h3{
+    font-size:  1.4rem;
+    font-weight: normal;
+}
+
+.break-buttons span,
+.timelenght-buttons span{
+    color: white;
 }
 
 .break-buttons button,
@@ -12,11 +25,11 @@
     padding: 0.2rem;
     border: none;
     border-radius: 3px;
-    margin: 0.5rem
+    margin: 0.5rem;
+}
+
+.btn-setting{ 
+    background: none;
 }
 
 
-.break-buttons h3,
-.timelenght-buttons h3{
-    
-}

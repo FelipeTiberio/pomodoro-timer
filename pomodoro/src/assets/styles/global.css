@@ -1,38 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap');
 
 :root{
     font-size: 60%;
-    --color-background: #393e46 ;
-    --color-primary: #fcda05;
-    --color-secondary : #fffbe0;
-    --color-dark : #222831;
+    --color-gray: #dadadb;
+    --color-dark-gray: #1f2025;
+    --color-background: #1F2025 ;
+    --gradient-gray: #343741;
+    --gradient-green: #b8f087;
+    --color-boxshadow: rgba(0,0,0,0.3);
+    --base-font:  'Rubik', sans-serif;
 }
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box ;
+    letter-spacing: calc(12px/10)
 }
 
 html, body, #root{
-    width: 100vw;
+    width: 100%;
     overflow-x: hidden;
-    background: #1d976c; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #1d976c, #93f9b9); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #1d976c, #93f9b9);
     height: 100%;
-    color: var(--color-dark);
+    color: #9fc883;
+    background: #11998e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 #root{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
 }
+
 
 body, input, button, textarea {
-    font: 500 1.6rem Poppins;
+    font-family: var(base-font);
 }
 
+.hidden {
+    display: none !important;
+}
 
 @media ( min-width: 700px  ){
     :root{

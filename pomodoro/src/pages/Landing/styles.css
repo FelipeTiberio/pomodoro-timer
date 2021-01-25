@@ -1,23 +1,47 @@
 
 
+main.container{
+    background : var(--color-background);
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(1fr,3);
+    grid-template-rows: repeat(1fr, 7);
+    box-shadow: 0 16px 28px 0 rgba(0,0,0,.8),0 25px 55px 0 rgba(0,0,0,0.21);
+    min-width: 290px;
+    min-height: 420px;
+}
 
-section#top-buttons{
+main.container h1{
+    grid-row: 1/2;
+    text-align: center;
+    font-weight: normal;
+    font-size: 2rem;
+    padding : 1rem;
+    margin-top: 1rem;
+   
+}
+
+main.container #display{
+    border-top: 1px solid rgba(0,0,0, 0.2);
+    border-bottom: 1px solid rgba(0,0,0, 0.2);
+    grid-row: 2/5;
+    min-height: 15rem;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+
 }
 
-section#count-container{
-    font-size: 6rem;
-}
-
-div#display{
+main.container #setting-buttons{
     display: grid;
-    place-items: center;
+    grid-template-columns: 50% 50%;
+    
 }
 
-section#start-rest-container{
-    display: grid;
-    grid-template-columns:  auto auto ;
-    gap: 0.5rem
+main.container #start-rest-container{
+   display: flex;
+}
+
+.break-buttons, .timelenght-buttons{
+    border: 1px solid rgba(0,0,0, 0.2);
 }

@@ -87,12 +87,20 @@ function Landing(){
     return(
         <>
         <Helmet>
-            <title> Pomodoro </title>
+            <title> Pomodoro Clock</title>
         </Helmet>
 
-        <main>
+        <main className="container">
             <h1>Pomodoro</h1>
-            <section id = 'top-buttons'> 
+            <div id='display'>
+                <Display  
+                    minutos  = { !isCounting ? 
+                        Math.floor( (countdown)/60) % 60 : 
+                        Math.floor( (countdown)/60 )%60 } 
+                    segundos = { Math.floor( (countdown) % 60 ) }/>    
+            </div>
+            
+            <section id = 'setting-buttons'> 
                 <PlusMinusButtons 
                     onClickAddMinute  = {addBreakTime}
                     onClickSubMinute  = {subBreakTime}
@@ -108,14 +116,6 @@ function Landing(){
                     number = { Math.floor( ( durationSession )/60 )%60 } />
 
             </section>
-                <div id='display'>
-                    <Display  
-                        minutos  = { !isCounting ? 
-                            Math.floor( (countdown)/60) % 60 : 
-                            Math.floor( (countdown)/60 )%60 } 
-                        segundos = { Math.floor( (countdown) % 60 ) }/>    
-                </div>
-                
 
             <section id = 'start-rest-container'>
                 <SimpleButton 

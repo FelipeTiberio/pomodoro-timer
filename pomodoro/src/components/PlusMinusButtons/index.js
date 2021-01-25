@@ -7,13 +7,13 @@ const PlusMinusButtons = ( props ) => {
         <div className= {props.className}>
         
             <h3>{props.label}</h3>
-            <button
+            <button className='btn-setting'
                 onClick={props.onClickSubMinute}
-                >-</button>
-                { props.number} 
-                <button
-                    onClick={props.onClickAddMinute }
-                >+</button>
+                > - </button>
+               <span>  { props.number} </span> 
+            <button className='btn-setting'
+                onClick={props.onClickAddMinute }
+                > + </button>
             
         </div>
     );

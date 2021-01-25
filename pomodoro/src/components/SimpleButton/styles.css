@@ -1,6 +1,12 @@
 
 button#main-button{
-    border-radius: 5px;
+    font-size: 1.6rem;
     border: none;
+    color : #fff;
     padding: 1rem 1rem;
+    display: inline-block;
+    width: 100%;
+    background: #11998e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #38ef7d, #11998e);
 }
