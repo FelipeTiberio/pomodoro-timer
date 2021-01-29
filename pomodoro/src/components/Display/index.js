@@ -19,7 +19,7 @@ const Display = (props) => {
   return (
     <section id='display-container'>
       <p>
-        {props.minutos < 10 ? "0" + props.minutos : props.minutos}
+        { props.minutos < 10 ? "0" + props.minutos : props.minutos }
                   :
                   {props.segundos < 10 ? "0" + props.segundos : props.segundos}
       </p>

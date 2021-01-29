@@ -1,3 +1,7 @@
 
 export const STANDARD_SESSION_DURATION = 1500;
 export const STANDARD_BREAK_DURATION = 300;
+export const MAX_DURANTION_BREAK = 1800;
+export const ONE_MINUTE = 60;
+export const MAX_DURANTION_SESSION = 3540;
+export const MIN_DURANTION_SESSION = 60*5;

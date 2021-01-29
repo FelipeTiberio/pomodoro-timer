@@ -5,25 +5,25 @@ import PlusMinusButtons from '../../components/PlusMinusButtons';
 import SimpleButton from '../../components/SimpleButton';
 
 import './styles.css'
-import * as constants from '../../constants';
-
+import {STANDARD_SESSION_DURATION, STANDARD_BREAK_DURATION, 
+        MAX_DURANTION_BREAK, ONE_MINUTE, MAX_DURANTION_SESSION,
+        MIN_DURANTION_SESSION
+    } from  '../../constants';
 
 function Landing(){
     
-    const [ durationSession, setDurantionSession ] = useState( constants.STANDARD_SESSION_DURATION);
-    const [ durationBreak, setDurantionBreak ] = useState(constants.STANDARD_BREAK_DURATION);
-    const [ isCounting, setIsCounting] = useState(false);
-    const [ countdown, setCountdown] = useState( constants.STANDARD_SESSION_DURATION);
-    const [ isInSession, setIsInSession] = useState(false);
-    const [ isInBreak, setIsInBreak] = useState(false);
+    const [ durationSession, setDurantionSession ] = useState( STANDARD_SESSION_DURATION );
+    const [ durationBreak, setDurantionBreak ] = useState( STANDARD_BREAK_DURATION );
+    const [ isCounting, setIsCounting ] = useState(false);
+    const [ countdown, setCountdown ] = useState( STANDARD_SESSION_DURATION );
+    const [ isInSession, setIsInSession ] = useState(false);
+    const [ isInBreak, setIsInBreak ] = useState(false);
 
-    let intervalo = useRef();
+    let runInTheBackGround = useRef();
 
     useEffect( () => {
-        /** Run in the backgroud  e count the seconds 
-         * using the value that is in countdown.
-         */
-        intervalo.current = setTimeout( () =>{
+       
+        runInTheBackGround.current = setTimeout( () =>{
           if( isCounting && countdown > 0){
             setCountdown( () => ( countdown - 1))
           }
@@ -40,36 +40,37 @@ function Landing(){
       });
 
     const addBreakTime = () => { 
-            if( durationBreak < 1800){
-                setDurantionBreak( (durationBreak) =>  durationBreak + 60 );
+            if( durationBreak < MAX_DURANTION_BREAK ){
+                setDurantionBreak( (durationBreak) =>  durationBreak + ONE_MINUTE );
             }
         };
 
     const subBreakTime = () => { 
-            if( durationBreak > 60){
-                setDurantionBreak( (durationBreak) =>  durationBreak - 60 );
+            if( durationBreak > ONE_MINUTE ){
+                setDurantionBreak( (durationBreak) =>  durationBreak - ONE_MINUTE );
             }
         };
     
     const addSessionTime = () => { 
-            if( durationSession < 3540){
-                setDurantionSession( (durationSession) =>  durationSession + 60 );
+            if( durationSession < MAX_DURANTION_SESSION ){
+                setDurantionSession( (durationSession) =>  durationSession + ONE_MINUTE );
             }
         };
     
     const subSessionTime = () => {
-            if( durationSession > 60*5){
-                setDurantionSession( (durationSession) =>  durationSession - 60 );
+            if( durationSession > MIN_DURANTION_SESSION ){
+                setDurantionSession( (durationSession) =>  durationSession - ONE_MINUTE );
             } 
         };
 
-    const zerar = async () => {
+    const zerarPomodoro = async () => {
         await setIsCounting(false);
-        await clearTimeout(intervalo.current);
+        await clearTimeout(runInTheBackGround.current);
         await setCountdown( durationSession );
         await setIsInBreak(false);
         await setIsInSession(false);
-        }; 
+        
+    }; 
 
     const startPomodoro = () => {
         setIsCounting(() => true);
@@ -82,11 +83,10 @@ function Landing(){
         setIsInBreak(true);
     };
 
-    const  pause = () => {
-        clearTimeout(intervalo.current);
+    const  pausePomodoro = () => {
+        clearTimeout(runInTheBackGround.current);
         setIsCounting( ()=> !isCounting );
     };
-
 
     return(
         <>
@@ -130,9 +130,9 @@ function Landing(){
                         isCounting === false ?
                         "Start" : "Pause"
                     }
-                    onClick= { isCounting ? pause : startPomodoro}
+                    onClick= { isCounting ? pausePomodoro : startPomodoro}
                     />
-                <SimpleButton label='Reset' onClick={zerar} />
+                <SimpleButton label='Reset' onClick={zerarPomodoro} />
             </section>
         </main>
         </>
